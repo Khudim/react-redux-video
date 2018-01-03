@@ -25,12 +25,12 @@ class Video extends React.Component {
 
         let videoId = 0;
         if (event.key === 'ArrowLeft') {
-            videoId = match.params.id - 1;
+            videoId = Number(match.params.id) - 1;
             if (videoId < 0) {
                 videoId = items.length - 1;
             }
         } else if (event.key === 'ArrowRight') {
-            videoId = match.params.id + 1;
+            videoId = Number(match.params.id) + 1;
             if (videoId >= items.length) {
                 videoId = 0;
             }
@@ -71,7 +71,6 @@ class Video extends React.Component {
 
     render() {
         const {video} = this.props;
-
         const divStyle = {
             position: 'fixed',
             right: '50%',

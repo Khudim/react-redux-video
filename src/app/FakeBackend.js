@@ -10,14 +10,14 @@ function createVideoResponse() {
         items: generateContent()
     }
 }
-
+let urls = ['http://arhivach.org/storage3/f/a0/fa04412dcc9b51fa486a95a8578a0bad.webm', 'http://arhivach.org/storage/5/e3/5e3d385cf0f450efef45119bcfacfcaa.webm'];
 function generateContent() {
     let content = [];
     for (let i = 0; i < 10; i++) {
         content.push({
             contentId: i,
             img: 'http://n1s2.elle.ru/48/7b/36/487b36300c62c5f0cb905da52aa874b4/940x627_1_5a0bfdc1ca88097a61d2d64668c61ef9@940x627_0xc0a839a4_18087198581488362059.jpeg',
-            src: 'https://youtu.be/Mxesac55Puo',
+            src: urls[i % 2],
             height: 100,
             width: 180
         })
