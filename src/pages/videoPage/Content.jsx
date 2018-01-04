@@ -8,9 +8,10 @@ import VideoComponent from "./components/VideoComponent";
 class Content extends React.Component {
 
     componentDidMount() {
-        const {items, filter, loadContent} = this.props;
+        const {items, filter, loadAllContent} = this.props;
+
         if (items.length === 0) {
-            loadContent(filter);
+            loadAllContent(filter);
         }
     }
 
@@ -23,7 +24,7 @@ class Content extends React.Component {
             </div>
         );
         return (
-            <div>
+            <div style={{marginTop: 10}}>
                 <div className="container text-center">
                     <div>{listItems}</div>
                 </div>
@@ -43,7 +44,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadContent: (filter) => dispatch(contentActions.loadContent(filter)),
+        loadAllContent: (filter) => dispatch(contentActions.loadAllContent(filter)),
     }
 };
 

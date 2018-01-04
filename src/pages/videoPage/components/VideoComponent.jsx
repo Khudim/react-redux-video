@@ -1,11 +1,12 @@
 /**
  * Created by Beaver on 21.05.2017.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {contentConstants} from "../ContentConstants";
+import {contentActions} from "../ContentActions";
 
 class Video extends React.Component {
     constructor(props) {
@@ -66,11 +67,10 @@ class Video extends React.Component {
                 width: this.state.width / divider
             }
         )
-
     }
 
     render() {
-        const {video} = this.props;
+        let {video} = this.props;
         const divStyle = {
             position: 'fixed',
             right: '50%',
@@ -101,14 +101,20 @@ class Video extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     const {items} = state.content;
-    const video = items[ownProps.match.params.id];
+    const video = items.find((item) => item.contentId === Number(ownProps.match.params.id));
     return {
         video,
         items
     };
 }
 
-const VideoComponent = withRouter(connect(mapStateToProps)(Video));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadContentById: (id) => dispatch(contentActions.loadContentById(id)),
+    }
+};
+
+const VideoComponent = withRouter(connect(mapStateToProps, mapDispatchToProps)(Video));
 
 export default VideoComponent;
 

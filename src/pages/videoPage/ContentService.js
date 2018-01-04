@@ -1,11 +1,22 @@
 import {host} from "../../app/FakeBackend"
 
 export const contentService = {
-    loadContent: loadContent
+    loadAllContent: loadAllContent,
+    loadContentById: loadContentById
 };
 
+function loadContentById(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+    };
+    return fetch(host + '/content?id=' + id, requestOptions).then(handleResponse);
+}
 
-function loadContent(filter) {
+function loadAllContent(filter) {
     const requestOptions = {
         method: 'GET',
         headers: {
