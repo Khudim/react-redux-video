@@ -22,11 +22,7 @@ function loadContentById(id) {
         dispatch(requestById(id));
 
         contentService.loadContentById(id).then(
-            response => {
-                dispatch(successId(response));
-                alert('action response ' + JSON.stringify(response))
-                video = response;
-            },
+            response => dispatch(successId(response)),
             error => dispatch(failure(error))
         )
     }

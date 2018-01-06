@@ -7,6 +7,7 @@ import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {contentConstants} from "../ContentConstants";
 import {contentActions} from "../ContentActions";
+import {host} from "../../../app/FakeBackend";
 
 class Video extends React.Component {
     constructor(props) {
@@ -85,9 +86,9 @@ class Video extends React.Component {
         return (
             <div>
                 {
-                    video.src &&
+                    video.contentId &&
                     <video onWheel={this.resizeVideo.bind(this)}
-                           src={video.src}
+                           src={host + '/video/' + video.contentId}
                            style={divStyle}
                            type="video/webm"
                            controls

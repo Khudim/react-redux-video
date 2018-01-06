@@ -23,7 +23,7 @@ export function content(state = initialState, action) {
                 ...state,
                 loading: false,
                 filter: action.filter,
-                items: action.response.items,
+                items: action.response.content,
                 count: action.response.count
             };
         case contentConstants.CONTENT_ID_REQUEST:

@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react';
 import {LinkContainer} from "react-router-bootstrap";
+import {host} from "../../../app/FakeBackend";
 
 export const ImageComponent = ({content, match}) => {
     const imageSize = {
@@ -11,10 +12,10 @@ export const ImageComponent = ({content, match}) => {
     };
 
     return (
-        <div className='col-md-2 col-sm-2 col-xs-4 video-col'>
+        <div className='col-md-2 col-sm-2 col-xs-4 video-col'  style={{maxWidth: 180, maxHeight: 100}}>
             <div className='thumbnail'>
                 <LinkContainer to={`${match.path}/${content.contentId}`}>
-                    <img src={content.img} style={imageSize}/>
+                    <img src={host + /img/ + content.contentId} style={imageSize}/>
                 </LinkContainer>
             </div>
         </div>

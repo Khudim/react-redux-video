@@ -11,7 +11,7 @@ function loadContentById(id) {
         headers: {
             'Content-Type': 'application/json'
         },
-        credentials: 'include'
+       // credentials: 'include'
     };
     return fetch(host + '/content?id=' + id, requestOptions).then(handleResponse);
 }
@@ -22,7 +22,7 @@ function loadAllContent(filter) {
         headers: {
             'Content-Type': 'application/json'
         },
-        credentials: 'include'
+       // credentials: 'include'
     };
     return fetch(host + '/content?page=' + filter.page + '&limit=' + filter.limit, requestOptions).then(handleResponse);
 }
