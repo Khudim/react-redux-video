@@ -16,11 +16,11 @@ class Content extends React.Component {
     }
 
     render() {
-        const {items, match} = this.props;
+        const {items, match, history} = this.props;
 
         let listItems = items.map((item) =>
             <div key={item.contentId}>
-                <ImageComponent content={item} match={match}/>
+                <ImageComponent content={item} match={match} history={history}/>
             </div>
         );
         return (

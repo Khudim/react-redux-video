@@ -1,22 +1,20 @@
 /**
  * Created by Beaver on 21.05.2017.
  */
-import React, {Component} from 'react';
-import {LinkContainer} from "react-router-bootstrap";
+import React from 'react';
 import {host} from "../../../app/FakeBackend";
 
-export const ImageComponent = ({content, match}) => {
+export const ImageComponent = ({content, match, history}) => {
     const imageSize = {
         width: 180,
-        height: 100
+        height: 100,
     };
 
     return (
-        <div className='col-md-2 col-sm-2 col-xs-4 video-col'  style={{}}>
+        <div className='col-md-2 col-sm-2 col-xs-4'>
             <div className='thumbnail'>
-                <LinkContainer to={`${match.path}/${content.contentId}`}>
-                    <img src={host + /img/ + content.contentId} style={imageSize}/>
-                </LinkContainer>
+                <img src={host + /img/ + content.contentId}
+                     onClick={() => history.push(`${match.path}/${content.contentId}`)} style={imageSize}/>
             </div>
         </div>
     )
