@@ -8,7 +8,7 @@ function createContentResponse() {
     const count = 20;
     return {
         count: count,
-        items: generateContent(count)
+        content: generateContent(count)
     }
 }
 let urls = ['http://arhivach.org/storage3/f/a0/fa04412dcc9b51fa486a95a8578a0bad.webm', 'http://arhivach.org/storage/5/e3/5e3d385cf0f450efef45119bcfacfcaa.webm'];
@@ -35,6 +35,7 @@ function createContentById(id) {
 
 export function configureFakeBackend() {
     let realFetch = window.fetch;
+
     window.fetch = function (url, opts) {
         return new Promise((resolve, reject) => {
             // wrap in timeout to simulate server api call
@@ -53,7 +54,6 @@ export function configureFakeBackend() {
                     resolve({ok: true, json: () => createContentById(55)});
                     return;
                 }
-
                 // pass through any requests not handled above
                 realFetch(url, opts).then(response => resolve(response));
 

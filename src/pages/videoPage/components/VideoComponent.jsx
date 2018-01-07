@@ -89,10 +89,10 @@ class Video extends React.Component {
                     <video onWheel={this.resizeVideo.bind(this)}
                            src={host + '/video/' + match.params.id}
                            style={divStyle}
-                           type="video/webm"
                            controls
                            loop
-                           autoPlay/>
+                           autoPlay>
+                    </video>
                 }
             </div>
         )
