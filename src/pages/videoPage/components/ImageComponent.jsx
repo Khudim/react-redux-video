@@ -12,7 +12,7 @@ export const ImageComponent = ({content, match}) => {
     };
 
     return (
-        <div className='col-md-2 col-sm-2 col-xs-4 video-col'  style={{maxWidth: 180, maxHeight: 100}}>
+        <div className='col-md-2 col-sm-2 col-xs-4 video-col'  style={{}}>
             <div className='thumbnail'>
                 <LinkContainer to={`${match.path}/${content.contentId}`}>
                     <img src={host + /img/ + content.contentId} style={imageSize}/>

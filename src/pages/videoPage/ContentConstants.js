@@ -4,6 +4,5 @@ export const contentConstants = {
     CONTENT_LOAD_SUCCESS: "CONTENT_LOAD_SUCCESS",
     CONTENT_ID_SUCCESS: "CONTENT_ID_SUCCESS",
 
-    pageSize: 30,
-    CONTENT_URL: '/index/content'
+    pageSize: 30
 };

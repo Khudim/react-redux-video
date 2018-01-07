@@ -5,7 +5,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {contentConstants} from "../ContentConstants";
 import {contentActions} from "../ContentActions";
 import {host} from "../../../app/FakeBackend";
 
@@ -22,26 +21,27 @@ class Video extends React.Component {
 
     clickArrows(event) {
         event.preventDefault();
+        const {items, history, video} = this.props;
 
-        const {items, match, history} = this.props;
+        let index = items.indexOf(video);
 
-        let videoId = 0;
         if (event.key === 'ArrowLeft') {
-            videoId = Number(match.params.id) - 1;
-            if (videoId < 0) {
-                videoId = items.length - 1;
+            index--;
+            if (index < 0) {
+                index = items.length - 1;
             }
         } else if (event.key === 'ArrowRight') {
-            videoId = Number(match.params.id) + 1;
-            if (videoId >= items.length) {
-                videoId = 0;
+            index++;
+            if (index >= items.length) {
+                index = 0;
             }
         }
-        history.push(`${contentConstants.CONTENT_URL}/${videoId}`)
+        let nextId = items[index].contentId;
+        history.push(`./${nextId}`)
     }
 
     clickOutside() {
-        this.props.history.push(contentConstants.CONTENT_URL)
+        this.props.history.push('./')
     }
 
     componentDidMount() {
@@ -71,7 +71,7 @@ class Video extends React.Component {
     }
 
     render() {
-        let {video} = this.props;
+        let {match} = this.props;
         const divStyle = {
             position: 'fixed',
             right: '50%',
@@ -86,9 +86,8 @@ class Video extends React.Component {
         return (
             <div>
                 {
-                    video.contentId &&
                     <video onWheel={this.resizeVideo.bind(this)}
-                           src={host + '/video/' + video.contentId}
+                           src={host + '/video/' + match.params.id}
                            style={divStyle}
                            type="video/webm"
                            controls
