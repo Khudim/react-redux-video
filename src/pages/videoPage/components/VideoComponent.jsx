@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {contentActions} from "../ContentActions";
-import {host} from "../../../app/FakeBackend";
 
 class Video extends React.Component {
     constructor(props) {
@@ -25,12 +24,12 @@ class Video extends React.Component {
 
         let index = items.indexOf(video);
 
-        if (event.key === 'ArrowLeft') {
+        if ('ArrowLeft' === event.key) {
             index--;
             if (index < 0) {
                 index = items.length - 1;
             }
-        } else if (event.key === 'ArrowRight') {
+        } else if ('ArrowRight' === event.key) {
             index++;
             if (index >= items.length) {
                 index = 0;
@@ -87,7 +86,8 @@ class Video extends React.Component {
             <div>
                 {
                     <video onWheel={this.resizeVideo.bind(this)}
-                           src={host + '/video/' + match.params.id}
+                           src={"http://arhivach.org/storage/0/04/00417e8d6ea666dcaf7acd6519c06d05.mp4"}
+                        //src={host + '/video/' + match.params.id}
                            style={divStyle}
                            controls
                            loop

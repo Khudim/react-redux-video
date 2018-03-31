@@ -4,20 +4,17 @@ import {contentActions} from "./ContentActions";
 import {Route, withRouter} from "react-router-dom";
 import {ImageComponent} from "./components/ImageComponent";
 import VideoComponent from "./components/VideoComponent";
+import ReduxInfiniteScroll from "../../common/ReduxInfiniteScroll";
 
 class Content extends React.Component {
 
-    componentDidMount() {
-        const {items, filter, loadAllContent} = this.props;
-
-        if (items.length === 0) {
-            loadAllContent(filter);
-        }
+    loadMore() {
+        let {filter, loadContent} = this.props;
+        loadContent(filter);
     }
 
     render() {
         const {items, match, history} = this.props;
-
         let listItems = items.map((item) =>
             <div key={item.contentId}>
                 <ImageComponent content={item} match={match} history={history}/>
@@ -26,7 +23,10 @@ class Content extends React.Component {
         return (
             <div style={{marginTop: 10}}>
                 <div className="container text-center">
-                    <div>{listItems}</div>
+                    <ReduxInfiniteScroll items={listItems}
+                                         loadMore={this.loadMore.bind(this)}
+                                         hasMore={true}
+                    />
                 </div>
                 <Route path={`${match.path}/:id`} component={VideoComponent}/>
             </div>
@@ -44,7 +44,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadAllContent: (filter) => dispatch(contentActions.loadAllContent(filter)),
+        loadContent: (filter) => dispatch(contentActions.loadContent(filter)),
     }
 };
 

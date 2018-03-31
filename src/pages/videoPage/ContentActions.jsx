@@ -2,15 +2,15 @@ import {contentService} from "./ContentService";
 import {contentConstants} from "./ContentConstants";
 
 export const contentActions = {
-    loadAllContent: loadAllContent,
+    loadContent: loadContent,
     loadContentById: loadContentById
 };
 
-function loadAllContent(filter) {
+function loadContent(filter) {
     return dispatch => {
         dispatch(requestAll(filter));
 
-        contentService.loadAllContent(filter).then(
+        contentService.loadContent(filter).then(
             response => dispatch(success(response, filter)),
             error => dispatch(failure(error))
         )
@@ -37,6 +37,7 @@ function requestById(id) {
 }
 
 function success(response, filter) {
+    filter.page += 1;
     return {type: contentConstants.CONTENT_LOAD_SUCCESS, filter, response}
 }
 

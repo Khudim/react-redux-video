@@ -4,8 +4,7 @@ let initialState = {
     items: [],
     count: 0,
     filter: {
-        page: 0,
-        limit: contentConstants.pageSize
+        page: 0
     },
     loading: false
 };
@@ -23,7 +22,7 @@ export function content(state = initialState, action) {
                 ...state,
                 loading: false,
                 filter: action.filter,
-                items: action.response.content,
+                items: state.items.concat(action.response.content),
                 count: action.response.count
             };
         case contentConstants.CONTENT_ID_REQUEST:

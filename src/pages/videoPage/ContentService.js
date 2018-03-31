@@ -1,7 +1,7 @@
 import {host} from "../../app/FakeBackend"
 
 export const contentService = {
-    loadAllContent: loadAllContent,
+    loadContent: loadContent,
     loadContentById: loadContentById
 };
 
@@ -16,7 +16,7 @@ function loadContentById(id) {
     return fetch(host + '/content?id=' + id, requestOptions).then(handleResponse);
 }
 
-function loadAllContent(filter) {
+function loadContent(filter) {
     const requestOptions = {
         method: 'GET',
         headers: {
