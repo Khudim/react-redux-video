@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Provider} from "react-redux";
 import {history} from "./History";
-import {Redirect, Route, Router, Switch} from "react-router-dom";
+import {Redirect, Route, Router} from "react-router-dom";
 import DevTools from "./DevTools";
 import {navBar} from "../navbar/NavBar";
 

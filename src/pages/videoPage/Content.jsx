@@ -14,7 +14,7 @@ class Content extends React.Component {
     }
 
     render() {
-        const {items, match, history} = this.props;
+        const {items, match, history, filter} = this.props;
         let listItems = items.map((item) =>
             <div key={item.contentId}>
                 <ImageComponent content={item} match={match} history={history}/>
@@ -25,7 +25,7 @@ class Content extends React.Component {
                 <div className="container text-center">
                     <ReduxInfiniteScroll items={listItems}
                                          loadMore={this.loadMore.bind(this)}
-                                         hasMore={true}
+                                         hasMore={filter.hasMore}
                     />
                 </div>
                 <Route path={`${match.path}/:id`} component={VideoComponent}/>

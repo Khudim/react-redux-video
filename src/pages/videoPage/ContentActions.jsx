@@ -37,7 +37,11 @@ function requestById(id) {
 }
 
 function success(response, filter) {
-    filter.page += 1;
+    if (response.content.length < contentConstants.PAGE_SIZE) {
+        filter.hasMore = false;
+    } else {
+        filter.page += 1;
+    }
     return {type: contentConstants.CONTENT_LOAD_SUCCESS, filter, response}
 }
 

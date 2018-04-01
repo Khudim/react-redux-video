@@ -5,7 +5,8 @@ let initialState = {
     count: 0,
     filter: {
         page: 0,
-        limit: contentConstants.pageSize
+        limit: contentConstants.PAGE_SIZE,
+        hasMore: true
     },
     loading: false
 };
@@ -23,7 +24,9 @@ export function content(state = initialState, action) {
                 ...state,
                 loading: false,
                 filter: action.filter,
-                items: state.items.concat(action.response.content),
+                items: state.items.length > contentConstants.CONTENT_LIMIT
+                    ? state.items.slice(contentConstants.PAGE_SIZE, state.items.length).concat(action.response.content)
+                    : state.items.concat(action.response.content),
                 count: action.response.count
             };
         case contentConstants.CONTENT_ID_REQUEST:

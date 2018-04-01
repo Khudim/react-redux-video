@@ -4,5 +4,6 @@ export const contentConstants = {
     CONTENT_LOAD_SUCCESS: "CONTENT_LOAD_SUCCESS",
     CONTENT_ID_SUCCESS: "CONTENT_ID_SUCCESS",
 
-    pageSize: 30
+    PAGE_SIZE: 30,
+    CONTENT_LIMIT: 100
 };
