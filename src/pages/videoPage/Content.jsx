@@ -16,12 +16,15 @@ class Content extends React.Component {
     render() {
         const {items, match, history, filter} = this.props;
         let listItems = items.map((item) =>
-            <div key={item.contentId}>
-                <ImageComponent content={item} match={match} history={history}/>
+            <div key={item.content.id}>
+                <ImageComponent item={item} match={match} history={history}/>
             </div>
         );
         return (
             <div style={{marginTop: 10}}>
+                <div style={{position: 'fixed', marginTop: '25%'}}>
+                    {filter.page}
+                </div>
                 <div className="container text-center">
                     <ReduxInfiniteScroll items={listItems}
                                          loadMore={this.loadMore.bind(this)}

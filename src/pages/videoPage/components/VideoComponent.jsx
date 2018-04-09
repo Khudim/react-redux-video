@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {contentActions} from "../ContentActions";
+import {host} from "../../../app/FakeBackend";
 
 class Video extends React.Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class Video extends React.Component {
                 index = 0;
             }
         }
-        let nextId = items[index].contentId;
+        let nextId = items[index].content.id;
         history.push(`./${nextId}`)
     }
 
@@ -86,8 +87,7 @@ class Video extends React.Component {
             <div>
                 {
                     <video onWheel={this.resizeVideo.bind(this)}
-                           src={"http://arhivach.org/storage/0/04/00417e8d6ea666dcaf7acd6519c06d05.mp4"}
-                        //src={host + '/video/' + match.params.id}
+                           src={host + '/video/' + match.params.id}
                            style={divStyle}
                            controls
                            loop
@@ -101,7 +101,7 @@ class Video extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     const {items} = state.content;
-    const video = items.find((item) => item.contentId === Number(ownProps.match.params.id));
+    const video = items.find((item) => item.content.id === Number(ownProps.match.params.id));
     return {
         video,
         items
