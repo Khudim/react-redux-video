@@ -5,6 +5,8 @@ import {Route, withRouter} from "react-router-dom";
 import {ImageComponent} from "./components/ImageComponent";
 import VideoComponent from "./components/VideoComponent";
 import ReduxInfiniteScroll from "../../common/ReduxInfiniteScroll";
+import {Button, ButtonGroup} from "react-bootstrap";
+import {contentConstants} from "./ContentConstants";
 
 class Content extends React.Component {
 
@@ -22,18 +24,27 @@ class Content extends React.Component {
         );
         return (
             <div style={{marginTop: 10}}>
-                <div style={{position: 'fixed', marginTop: '25%'}}>
-                    {filter.page}
+                <div style={{position: 'fixed', marginTop: '25%', marginLeft: -60}}>
+                    <ButtonGroup vertical block>
+                        <Button active={filter.page === 0}>1</Button>
+                        <Button active={filter.page === 2}>2</Button>
+                        <Button active={filter.page === 3}>3</Button>
+                        <Button active={filter.page === 4}>{filter.count / contentConstants.PAGE_SIZE}</Button>
+                    </ButtonGroup>
                 </div>
                 <div className="container text-center">
-                    <ReduxInfiniteScroll items={listItems}
-                                         loadMore={this.loadMore.bind(this)}
-                                         hasMore={filter.hasMore}
+                    < ReduxInfiniteScroll
+                        items={listItems}
+                        loadMore={this.loadMore.bind(this)
+                        }
+                        hasMore={filter.hasMore
+                        }
                     />
                 </div>
                 <Route path={`${match.path}/:id`} component={VideoComponent}/>
             </div>
-        );
+        )
+            ;
     }
 }
 

@@ -131,7 +131,7 @@ export default class ReduxInfiniteScroll extends React.Component {
 
         return (
             <Holder className={this._assignHolderClass()}
-                    style={{height: this.props.containerHeight, overflow: 'scroll'}}>
+                    style={{height: this.props.containerHeight}}>
                 {this.props.animateItems ? this._renderWithTransitions() : this._renderOptions()}
                 {this.renderLoader()}
             </Holder>

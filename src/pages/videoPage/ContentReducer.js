@@ -4,6 +4,7 @@ let initialState = {
     items: [],
     count: 0,
     filter: {
+        count: 0,
         page: 0,
         limit: contentConstants.PAGE_SIZE,
         hasMore: true

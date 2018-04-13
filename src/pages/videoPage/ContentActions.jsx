@@ -42,6 +42,7 @@ function success(response, filter) {
     } else {
         filter.page += 1;
     }
+    filter.count = response.count;
     return {type: contentConstants.CONTENT_LOAD_SUCCESS, filter, response}
 }
 
